@@ -12,10 +12,61 @@ export default async function PendingTask() {
 
   const { data: todo } = await supabase.from("todo").select();
 
+  /*interface ItemsProps {
+    items: {
+        id: number;
+        title: string;
+        priority: string;
+    }[];
+    onComplete: (id: number) => void;
+    onDelete: (id: number) => void;
+    isIncomplete: boolean;
+  }
 
-  //return <pre>{JSON.stringify(todo, null, 2)}</pre>
+  const ItemsList: React.FC<ItemsProps> = ({
+    isIncomplete,
+    items,
+    onComplete,
+    onDelete,
+  }) => {
+    const renderItems = () => {
+      if (isIncomplete) {
+        return (
+          <div>
+            {items.map((item) => (
+              <IncompleteItem
+                key={item.id}
+                task={item}
+                onComplete={onComplete}
+                onDelete={onDelete}
+              />
+            ))}
+          </div>
+        );
+      } else if (isIncomplete == false) {
+        return (
+          <div>
+            {items.map((item) => (
+              <CompleteItem
+                key={item.id}
+                task={item}
+                onComplete={onComplete}
+                onDelete={onDelete}
+              />
+            ))}
+          </div>
+        );
+      }
+    };
 
-  return (
+
+  }
+
+ return renderItems();
+};
+*/
+
+return (
     <body className='dark:bg-primary flex items-center space-x-2'>
       <div className='my-3 space-x-2'>
         <div className="flex items-center space-x-2">
@@ -30,6 +81,7 @@ export default async function PendingTask() {
               <label htmlFor='todos'>
                   Go home
                 </label>
+                <pre>{JSON.stringify(todo, null, 2)}</pre>
           </div>
           <div>
             <Button className='bg-background text-foreground'>Update</Button>
