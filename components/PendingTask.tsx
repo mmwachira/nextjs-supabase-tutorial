@@ -1,94 +1,36 @@
+"use client";
 
-import { createClient } from '@/utils/supabase/server';
-import { Checkbox } from "@/components/ui/checkbox";
 import "../styles/globals.css";
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
 
 
-export default async function PendingTask() {
-  const supabase = createClient();
+export default function PendingTask(todo: Todo) {
 
-
-  const { data: todo } = await supabase.from("todo").select();
-
-  /*interface ItemsProps {
-    items: {
-        id: number;
-        title: string;
-        priority: string;
-    }[];
-    onComplete: (id: number) => void;
-    onDelete: (id: number) => void;
-    isIncomplete: boolean;
-  }
-
-  const ItemsList: React.FC<ItemsProps> = ({
-    isIncomplete,
-    items,
-    onComplete,
-    onDelete,
-  }) => {
-    const renderItems = () => {
-      if (isIncomplete) {
-        return (
-          <div>
-            {items.map((item) => (
-              <IncompleteItem
-                key={item.id}
-                task={item}
-                onComplete={onComplete}
-                onDelete={onDelete}
-              />
-            ))}
-          </div>
-        );
-      } else if (isIncomplete == false) {
-        return (
-          <div>
-            {items.map((item) => (
-              <CompleteItem
-                key={item.id}
-                task={item}
-                onComplete={onComplete}
-                onDelete={onDelete}
-              />
-            ))}
-          </div>
-        );
-      }
-    };
-
-
-  }
-
- return renderItems();
-};
-*/
 
 return (
-    <body className='dark:bg-primary flex items-center space-x-2'>
-      <div className='my-3 space-x-2'>
-        <div className="flex items-center space-x-2">
-          <h1 className='scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl'>
-            Todo List
-          </h1>
-        </div>
-
-        <Separator className="my-3 bg-background" />
-          <div className='flex items-center space-x-4 text-sm'>
-            <Checkbox id = "todos" className='bg-background' />
-              <label htmlFor='todos'>
-                  Go home
-                </label>
-                <pre>{JSON.stringify(todo, null, 2)}</pre>
-          </div>
-          <div>
-            <Button className='bg-background text-foreground'>Update</Button>
-          </div>
-          
-      </div>
-    </body>
+            <div className='bg-white p-3 w-full flex items-center'>
+                <div>
+                    <h2 className="text-sm font-medium">{todo.title}</h2>
+                        <Separator className="bg-foreground my-4" />
+                </div>
+                <div className="ml-auto">
+                    <span className={`px-2 py-1 ${
+                        todo.priority === 1
+                        ? "bg-red-100 text-red-800"
+                        : todo.priority === 2
+                        ? "bg-yellow-100 text-yellow-800"
+                        : "bg-green-100 text-green-800"
+                    } text-gray-800 text-xs rounded-x1 m-2 mt-0`}>
+                        {todo.priority === 1
+                        ? "high"
+                        : todo.priority === 2
+                        ? "medium"
+                        : "low"}
+                    </span>
+                </div>
+            </div>
+            
     
   )
 }
