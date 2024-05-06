@@ -16,9 +16,10 @@ import { Trash } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function DeleteItem(todo: Todo) {
-  const [titleToDelete, setTitleToDelete] = useState("");
-  const [enableDelete, setEnableDelete] = useState(false);
-  const router = useRouter();
+    const [open, setOpen] = useState(false);
+    const [titleToDelete, setTitleToDelete] = useState("");
+    const [enableDelete, setEnableDelete] = useState(false);
+    const router = useRouter();
 
   useEffect(() => {
     if (titleToDelete === todo.title) {
@@ -37,10 +38,11 @@ export default function DeleteItem(todo: Todo) {
     if (error) {
       console.error("Error deleting todo", error);
     }
+    setOpen(false);
     router.refresh();
   };
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost" className="px-2.5">
           <Trash className="w-4 h-4 text-red-500" />

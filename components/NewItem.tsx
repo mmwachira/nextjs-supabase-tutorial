@@ -119,11 +119,11 @@ export default function NewItem()
                                         <Loader2 className="w-4 h-4 ml-2 m-1 animate-spin" />
                                     </Button>
                                 ) : (
-                                <Button onClick={createTodo}><Save className="mr-2 h-4 w-4" />Save</Button>
+                                <Button className="bg-green-500" onClick={createTodo}><Save className="mr-2 h-4 w-4" />Save</Button>
                                 )
                             ): (
-                                <Button disabled className="ml-2 m-1">
-                                    <Save className="mr-2 h-4 w-4" />Save
+                                <Button disabled className="ml-2 m-1 bg-foreground text-background">
+                                    <Save className="mr-2 h-4 w-4 " />Save
                                 </Button>
                             )}
                         

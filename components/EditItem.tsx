@@ -25,8 +25,9 @@ import { Pencil } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 
 export default function EditItem(todo: Todo) {
-  const [title, setTitle] = useState(todo.title);
-  const [priority, setPriority] = useState(
+    const [open, setOpen] = useState(false);
+    const [title, setTitle] = useState(todo.title);
+    const [priority, setPriority] = useState(
     todo.priority === 1 ? "high" : todo.priority === 2 ? "medium" : "low"
   );
 
@@ -44,11 +45,12 @@ export default function EditItem(todo: Todo) {
     if (error) {
       console.error("Error updating item", error);
     }
+    setOpen(false);
     router.refresh();
   };
 
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost" className="px-2.5">
           <Pencil className="w-4 h-4" />
@@ -74,11 +76,11 @@ export default function EditItem(todo: Todo) {
             onValueChange={(value: any) => setPriority(value)}
             value={priority}
           >
-            <SelectTrigger className="w-full mt-1 ml-1">
+            <SelectTrigger className="w-[150px] mt-1 ml-1">
               <SelectValue placeholder="Priority" />
             </SelectTrigger>
             <SelectContent>
-              <SelectGroup>
+              <SelectGroup className='w-full'>
                 <SelectItem value="high">high</SelectItem>
                 <SelectItem value="medium">medium</SelectItem>
                 <SelectItem value="low">low</SelectItem>
@@ -87,7 +89,7 @@ export default function EditItem(todo: Todo) {
           </Select>
         </div>
         <DialogFooter>
-          <Button className="w-full" onClick={updateTodo}>
+          <Button className="bg-foreground text-background w-full" onClick={updateTodo}>
             Save changes
           </Button>
         </DialogFooter>
