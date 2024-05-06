@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react"; 
 import { Input } from '@/components/ui/input';
 import "../styles/globals.css";
-import { Loader2, Save } from "lucide-react";
+import { Loader2, Save, Plus } from "lucide-react";
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -65,9 +65,11 @@ export default function NewItem()
     
     return(
             <Dialog>
+                
                 <DialogTrigger asChild>
-                    <Button variant="outline" className='bg-background text-foreground'>New</Button>
+                    <Button className='bg-foreground text-background ml-3'> <Plus className="mr-2 h-4 w-4" />New</Button>
                 </DialogTrigger>
+                
                 <DialogContent className="sm:max-w-[425px]">
                     <DialogHeader>
                         <DialogTitle>New Item</DialogTitle>
